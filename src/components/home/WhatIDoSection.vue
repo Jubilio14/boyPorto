@@ -5,18 +5,19 @@ import {
   onMounted,
   ref,
 } from 'vue'
+
+import type { ComponentPublicInstance } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import SectionDivider from '../ui/SectionDivider.vue'
 
-gsap.registerPlugin(ScrollTrigger)
+type TemplateRefValue =
+  | Element
+  | ComponentPublicInstance
+  | null
 
-interface StatItem {
-  value: string
-  label: string
-  description: string
-}
+gsap.registerPlugin(ScrollTrigger)
 
 const description =
   'I create digital experiences that balance user needs, business goals, and long-term scalability. Every decision is guided by clarity, consistency, and meaningful impact.'
@@ -52,7 +53,7 @@ const stats: StatItem[] = [
 const statNumberElements = ref<HTMLElement[]>([])
 
 const setStatNumberElement = (
-  element: Element | null,
+  element: TemplateRefValue,
   index: number,
 ) => {
   if (element instanceof HTMLElement) {
@@ -67,7 +68,7 @@ const wordElements = ref<HTMLElement[]>([])
 let animationContext: gsap.Context | undefined
 
 const setWordElement = (
-  element: Element | null,
+  element: TemplateRefValue,
   index: number,
 ) => {
   if (element instanceof HTMLElement) {

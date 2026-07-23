@@ -59,13 +59,14 @@ onMounted(() => {
     return
   }
 
-  timeline = gsap.timeline()
+  const splashTimeline = gsap.timeline()
+  timeline = splashTimeline
 
   languages.forEach((language, index) => {
     const isLastLanguage =
       index === languages.length - 1
 
-    timeline.call(() => {
+    splashTimeline.call(() => {
       if (!textRef.value) {
         return
       }
@@ -76,7 +77,7 @@ onMounted(() => {
         : '#ffffff'
     })
 
-    timeline.fromTo(
+    splashTimeline.fromTo(
       textRef.value,
       {
         y: 28,
@@ -93,7 +94,7 @@ onMounted(() => {
     )
 
     if (!isLastLanguage) {
-      timeline.to(
+      splashTimeline.to(
         textRef.value,
         {
           y: -22,
