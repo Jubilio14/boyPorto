@@ -189,7 +189,7 @@ onBeforeUnmount(() => {
     <SectionDivider />
 
     <div
-      class="mx-auto mt-12 grid w-full max-w-[1600px] gap-10 px-5 sm:mt-14 sm:px-8 lg:mt-10 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-16 lg:px-14"
+      class="mx-auto mt-12 grid w-full max-w-[1600px] gap-10 px-5 sm:mt-14 sm:px-8 lg:mt-10 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-16 lg:px-24"
     >
       <!-- Judul kiri -->
       <div>
@@ -201,11 +201,11 @@ onBeforeUnmount(() => {
       </div>
 
       <!-- Konten kanan -->
-      <div class="w-full lg:ml-auto lg:max-w-[920px]">
+      <div class="w-full">
         <!-- Deskripsi utama -->
         <p
           ref="descriptionRef"
-          class="font-display text-[30px] font-medium leading-[1.08] tracking-[-0.045em] sm:text-[38px] lg:text-right lg:text-[46px] xl:text-[50px]"
+          class="font-display text-[30px] font-medium leading-[1.08] tracking-[-0.045em] sm:text-[38px] lg:ml-auto lg:max-w-[920px] lg:text-right lg:text-[46px] xl:text-[50px]"
         >
           <span
             v-for="(word, index) in descriptionWords"
@@ -219,11 +219,17 @@ onBeforeUnmount(() => {
 
         <!-- Statistik -->
         <div
-          class="mt-12 grid gap-10 sm:grid-cols-2 sm:gap-12 lg:mt-14 lg:gap-16"
+          class="mt-12 grid gap-10 sm:grid-cols-2 sm:gap-12 lg:ml-auto lg:mt-14 lg:w-full lg:max-w-[920px] lg:translate-x-6 lg:gap-24"
         >
           <article
             v-for="(stat, index) in stats"
             :key="stat.label"
+            class="w-full max-w-[420px]"
+            :class="
+              index === stats.length - 1
+                ? 'lg:justify-self-end lg:translate-x-6'
+                : 'lg:justify-self-start'
+            "
           >
             <p
               :ref="(element) => setStatNumberElement(element, index)"
@@ -239,7 +245,7 @@ onBeforeUnmount(() => {
             </h3>
 
             <p
-              class="mt-3 max-w-[360px] text-sm leading-6 text-text-primary/85"
+              class="mt-3 text-sm leading-6 text-text-primary/85"
             >
               {{ stat.description }}
             </p>

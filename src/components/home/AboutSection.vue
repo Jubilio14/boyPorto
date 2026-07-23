@@ -79,7 +79,7 @@ onBeforeUnmount(() => {
     <SectionDivider />
 
     <div
-      class="mx-auto mt-14 grid w-full max-w-[1600px] items-center gap-16 px-5 sm:mt-16 sm:px-8 lg:mt-20 lg:grid-cols-[minmax(280px,420px)_minmax(0,1fr)] lg:gap-20 lg:px-14 xl:gap-28"
+      class="mx-auto mt-14 grid w-full max-w-[1600px] items-center gap-16 px-5 sm:mt-16 sm:px-8 lg:mt-20 lg:grid-cols-[minmax(280px,420px)_minmax(0,1fr)] lg:gap-20 lg:px-24 xl:gap-28"
     >
       <!-- Foto polaroid -->
       <div class="flex justify-center lg:justify-start">

@@ -4,7 +4,7 @@ import logoMark from '../../assets/logoBoy.png'
 
 <template>
   <div
-    class="mx-auto flex w-full max-w-[1600px] items-center gap-4 px-5 sm:gap-5 sm:px-8 lg:gap-6 lg:px-14"
+    class="mx-auto flex w-full max-w-[1600px] items-center gap-4 px-5 sm:gap-5 sm:px-8 lg:gap-6 lg:px-24"
     aria-hidden="true"
   >
     <!-- Garis kiri -->

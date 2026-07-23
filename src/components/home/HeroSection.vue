@@ -139,7 +139,7 @@ onBeforeUnmount(() => {
 
     <!-- Isi Hero -->
     <div
-      class="relative z-10 mx-auto flex min-h-screen w-full max-w-[1600px] px-5 pb-20 pt-28 sm:px-8 sm:pt-32 lg:items-center lg:px-14 lg:pb-24 lg:pt-28"
+      class="relative z-10 mx-auto flex min-h-screen w-full max-w-[1600px] px-5 pb-20 pt-28 sm:px-8 sm:pt-32 lg:items-center lg:px-24 lg:pb-24 lg:pt-28"
     >
       <div
         class="flex w-full flex-col lg:w-[56%]"
@@ -199,7 +199,7 @@ onBeforeUnmount(() => {
 
       <!-- Lokasi -->
       <div
-        class="absolute bottom-6 left-5 z-20 flex items-center gap-3 sm:bottom-8 sm:left-8 lg:bottom-9 lg:left-14"
+        class="absolute bottom-6 left-5 z-20 flex items-center gap-3 sm:bottom-8 sm:left-8 lg:bottom-9 lg:left-24"
       >
         <div
           class="flex items-center gap-2 text-[10px] sm:text-xs"
