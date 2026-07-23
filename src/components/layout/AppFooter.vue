@@ -1,21 +1,7 @@
 <script setup lang="ts">
-import {
-  Instagram,
-  Linkedin,
-} from 'lucide-vue-next'
 
-const socialLinks = [
-  {
-    name: 'Instagram',
-    url: '#',
-    icon: Instagram,
-  },
-  {
-    name: 'LinkedIn',
-    url: '#',
-    icon: Linkedin,
-  },
-]
+import footerImage from '../../assets/Footer.png'
+
 </script>
 
 <template>
@@ -28,13 +14,11 @@ const socialLinks = [
       class="footer-panel relative w-full bg-accent pb-7 pt-16 sm:pb-9 sm:pt-20 lg:pb-10 lg:pt-24"
     >
       <!-- Nama besar -->
-        <div
-        class="footer-title pointer-events-none absolute left-1/2 top-0 z-0 flex w-screen -translate-x-1/2 -translate-y-[70%] items-end justify-between whitespace-nowrap font-display text-[clamp(3rem,12.8vw,15rem)] font-semibold uppercase leading-[0.72] tracking-[-0.075em] text-accent sm:-translate-y-[82%] lg:-translate-y-[95%]"
-        aria-hidden="true"
-        >
-        <span class="-translate-x-[0.055em]">Boy</span>
-        <span class="translate-x-[0.045em]">Perton</span>
-        </div>
+        <img
+          :src="footerImage"
+          alt="Boy Perton"
+          class="footer-title pointer-events-none absolute left-1/2 top-0 z-0 h-auto w-[100vw] max-w-none -translate-x-1/2 -translate-y-[70%] object-contain sm:-translate-y-[82%] lg:-translate-y-[92%]"
+        />
 
       <!-- Isi tetap mengikuti container website -->
       <div
@@ -64,21 +48,96 @@ const socialLinks = [
             </p>
 
             <div class="mt-2 flex items-center gap-2">
+              <!-- Instagram -->
               <a
-                v-for="social in socialLinks"
-                :key="social.name"
-                :href="social.url"
-                :aria-label="social.name"
+                href="#"
+                aria-label="Instagram"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="group flex h-8 w-8 items-center justify-center bg-main text-white transition-transform duration-300 hover:-translate-y-1"
+                class="group flex h-8 w-8 items-center justify-center bg-main transition-transform duration-300 hover:-translate-y-1 rounded-md"
               >
-                <component
-                  :is="social.icon"
-                  :size="15"
-                  :stroke-width="2"
-                  class="transition-transform duration-300 group-hover:scale-110"
-                />
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-5 w-5 transition-transform duration-300 group-hover:scale-110"
+                  aria-hidden="true"
+                >
+                  <!-- Block putih -->
+                  <rect
+                    x="2.5"
+                    y="2.5"
+                    width="19"
+                    height="19"
+                    rx="5"
+                    fill="#ffffff"
+                  />
+
+                  <!-- Lensa kamera -->
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="4"
+                    fill="none"
+                    stroke="#1d1d1d"
+                    stroke-width="2"
+                  />
+
+                  <!-- Titik kamera -->
+                  <circle
+                    cx="17.2"
+                    cy="6.8"
+                    r="1.25"
+                    fill="#1d1d1d"
+                  />
+                </svg>
+              </a>
+
+              <!-- LinkedIn -->
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex h-8 w-8 items-center justify-center rounded-md bg-main transition-transform duration-300 hover:-translate-y-1"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-5 w-5 transition-transform duration-300 group-hover:scale-110"
+                  aria-hidden="true"
+                >
+                  <!-- Block putih -->
+                  <rect
+                    x="2.5"
+                    y="2.5"
+                    width="19"
+                    height="19"
+                    rx="2.8"
+                    fill="#ffffff"
+                  />
+
+                  <!-- Titik huruf i -->
+                  <circle
+                    cx="7.2"
+                    cy="7.5"
+                    r="1.3"
+                    fill="#1d1d1d"
+                  />
+
+                  <!-- Batang huruf i -->
+                  <rect
+                    x="6"
+                    y="10"
+                    width="2.4"
+                    height="7.5"
+                    rx="0.5"
+                    fill="#1d1d1d"
+                  />
+
+                  <!-- Bentuk huruf n -->
+                  <path
+                    d="M10.8 10H13V11.05C13.75 10.15 14.8 9.7 16.05 9.7C18.45 9.7 19 11.25 19 13.65V17.5H16.6V13.95C16.6 12.8 16.35 11.85 15.05 11.85C13.7 11.85 13.2 12.75 13.2 14V17.5H10.8V10Z"
+                    fill="#1d1d1d"
+                  />
+                </svg>
               </a>
             </div>
           </div>
@@ -100,8 +159,7 @@ const socialLinks = [
 }
 
 .footer-title {
-  font-kerning: none;
-  text-rendering: geometricPrecision;
+  display: block;
 }
 
 

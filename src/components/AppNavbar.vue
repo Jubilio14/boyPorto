@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { Mail } from 'lucide-vue-next'
 
 import logoBoy from '../assets/logoBoy.png'
 
@@ -136,21 +135,40 @@ onBeforeUnmount(() => {
       </div>
 
       <!-- Email -->
-      <a
-        href="mailto:emailtemanmu@gmail.com"
-        aria-label="Send email"
-        class="flex h-11 items-center justify-center overflow-hidden rounded-md bg-[#1d1d1d]/90 text-white backdrop-blur-xl transition-[width,max-width,opacity,transform,border-width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-[#c1203a] hover:text-[#c1203a] sm:h-12"
-        :class="
-          isCollapsed
-            ? 'pointer-events-none w-0 max-w-0 translate-x-2 scale-95 border-0 opacity-0'
-            : 'w-11 max-w-11 translate-x-0 scale-100 border border-white/25 opacity-100 sm:w-12 sm:max-w-12'
-        "
-      >
-        <Mail
-          :size="17"
-          :stroke-width="2"
-        />
-      </a>
+<a
+  href="mailto:boyferton07@gmail.com"
+  aria-label="Send email"
+  class="flex h-11 shrink-0 items-center justify-center overflow-hidden rounded-md bg-[#1d1d1d]/90 transition-[width,opacity,transform,border-width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:h-12"
+  :class="
+    isCollapsed
+      ? 'pointer-events-none w-0 -translate-x-2 scale-95 border-0 opacity-0'
+      : 'w-11 translate-x-0 scale-100 border border-white/25 opacity-100 hover:-translate-y-1 sm:w-12'
+  "
+>
+  <svg
+    viewBox="0 0 24 24"
+    class="h-[22px] w-[22px] shrink-0"
+    aria-hidden="true"
+  >
+    <rect
+      x="2.5"
+      y="4.5"
+      width="19"
+      height="15"
+      rx="2.5"
+      fill="#ffffff"
+    />
+
+    <path
+      d="M4.5 7.5L12 13L19.5 7.5"
+      fill="none"
+      stroke="#1d1d1d"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+</a>
     </nav>
   </header>
 </template>

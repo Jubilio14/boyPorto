@@ -1,4 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {
+  createRouter,
+  createWebHistory,
+} from 'vue-router'
 
 import HomeView from '../views/HomeView.vue'
 import ProjectDetailView from '../views/ProjectDetailView.vue'
@@ -19,18 +22,25 @@ const router = createRouter({
     },
   ],
 
-  scrollBehavior(to) {
+  scrollBehavior(to, _from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    }
+
     if (to.hash) {
-        return {
-        el: to.hash,
-        behavior: 'smooth',
-        top: 100,
-        }
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({
+            el: to.hash,
+            top: 100,
+            behavior: 'smooth',
+          })
+        }, 150)
+      })
     }
 
     return {
-        top: 0,
-        behavior: 'smooth',
+      top: 0,
     }
   },
 })
