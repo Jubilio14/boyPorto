@@ -60,83 +60,81 @@ onMounted(() => {
   }
 
   const splashTimeline = gsap.timeline()
-  timeline = splashTimeline
+timeline = splashTimeline
 
-  languages.forEach((language, index) => {
-    const isLastLanguage =
-      index === languages.length - 1
+languages.forEach((language, index) => {
+  const isLastLanguage =
+    index === languages.length - 1
 
-    splashTimeline.call(() => {
-      if (!textRef.value) {
-        return
-      }
-
-      textRef.value.textContent = language
-      textRef.value.style.color = isLastLanguage
-        ? '#c1203a'
-        : '#ffffff'
-    })
-
-    splashTimeline.fromTo(
-      textRef.value,
-      {
-        y: 28,
-        autoAlpha: 0,
-        filter: 'blur(8px)',
-      },
-      {
-        y: 0,
-        autoAlpha: 1,
-        filter: 'blur(0px)',
-        duration: 0.3,
-        ease: 'power3.out',
-      },
-    )
-
-    if (!isLastLanguage) {
-      splashTimeline.to(
-        textRef.value,
-        {
-          y: -22,
-          autoAlpha: 0,
-          filter: 'blur(6px)',
-          duration: 0.22,
-          ease: 'power2.in',
-        },
-        '+=0.08',
-      )
+  splashTimeline.call(() => {
+    if (!textRef.value) {
+      return
     }
+
+    textRef.value.textContent = language
+    textRef.value.style.color = isLastLanguage
+      ? '#c1203a'
+      : '#ffffff'
   })
 
-  timeline
-    .to(
+  // Teks masuk lebih cepat
+  splashTimeline.fromTo(
+    textRef.value,
+    {
+      y: 22,
+      autoAlpha: 0,
+      filter: 'blur(7px)',
+    },
+    {
+      y: 0,
+      autoAlpha: 1,
+      filter: 'blur(0px)',
+      duration: 0.18,
+      ease: 'power3.out',
+    },
+  )
+
+  if (!isLastLanguage) {
+    // Jeda dan keluar lebih cepat
+    splashTimeline.to(
       textRef.value,
       {
-        scale: 1.025,
-        duration: 0.28,
-        ease: 'power2.out',
-      },
-      '+=0.18',
-    )
-    .call(() => {
-      /*
-        Konten website mulai dipasang di belakang
-        ketika splash akan menghilang.
-      */
-      emit('reveal')
-    })
-    .to(
-      splashRef.value,
-      {
+        y: -18,
         autoAlpha: 0,
-        duration: 0.65,
-        ease: 'power2.inOut',
+        filter: 'blur(5px)',
+        duration: 0.12,
+        ease: 'power2.in',
       },
-      '+=0.1',
+      '+=0.02',
     )
-    .call(() => {
-      emit('complete')
-    })
+  }
+})
+
+splashTimeline
+  .to(
+    textRef.value,
+    {
+      scale: 1.02,
+      duration: 0.18,
+      ease: 'power2.out',
+    },
+    '+=0.08',
+  )
+  .call(() => {
+    emit('reveal')
+  })
+  .to(
+    splashRef.value,
+    {
+      autoAlpha: 0,
+      duration: 0.4,
+      ease: 'power2.inOut',
+    },
+    '+=0.05',
+  )
+  .call(() => {
+    emit('complete')
+  })
 })
 
 onBeforeUnmount(() => {
