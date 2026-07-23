@@ -103,7 +103,7 @@ onMounted(async () => {
           Stage dipin saat tepat mencapai
           bagian atas layar.
         */
-        start: 'top top',
+        start: 'top 0%',
 
         /*
           Satu perpindahan project mendapat
@@ -259,13 +259,13 @@ onBeforeUnmount(() => {
 <template>
   <section
     id="work"
-    class="bg-main pt-16 sm:pt-20 lg:pt-24"
+    class="bg-main pt-20 sm:pt-24 lg:pt-16"
   >
     <SectionDivider />
 
     <!-- Header project -->
     <div
-    class="mx-auto mt-14 w-full max-w-[1600px] px-5 text-center sm:mt-16 sm:px-8 lg:mt-20 lg:px-14"
+      class="mx-auto mt-12 w-full max-w-[1600px] px-5 text-center sm:mt-14 sm:px-8 lg:mt-10 lg:px-14"
     >
     <p
         class="font-display text-lg font-semibold uppercase text-accent sm:text-xl"

@@ -95,37 +95,53 @@ onMounted(() => {
   }
 
   animationContext = gsap.context(() => {
-    /*
-      Kondisi awal seluruh kata:
-      abu-abu sesuai desain.
-    */
-    gsap.set(wordElements.value, {
-        color: '#9a9a9a',
-        filter: 'blur(2px)',
-        opacity: '0.45',
-    })
+  /*
+    Kondisi awal seluruh kata.
+  */
+  gsap.set(wordElements.value, {
+    color: '#9a9a9a',
+    filter: 'blur(2px)',
+    opacity: 0.45,
+  })
 
-    /*
-      Setiap kata berubah menjadi putih secara berurutan
-      mengikuti progres scroll.
-    */
-    gsap.to(wordElements.value, {
-        color: '#ffffff',
-        filter: 'blur(0px)',
-        opacity: '1',
-        ease: 'none',
-        stagger: 0.08,
+  /*
+    Section ditahan ketika mencapai 20% layar.
+    Scroll digunakan untuk menjalankan animasi kata.
+  */
+  gsap.to(wordElements.value, {
+    color: '#ffffff',
+    filter: 'blur(0px)',
+    opacity: 1,
+    ease: 'none',
+    stagger: 0.08,
 
-        scrollTrigger: {
-            trigger: descriptionRef.value,
-            start: 'top 15%',
-            end: 'bottom 5%',
-            scrub: 0.35,
+    scrollTrigger: {
+      trigger: sectionRef.value,
+      start: 'top -5%',
+
+      pin: true,
+      pinSpacing: true,
+      anticipatePin: 1,
+
+      end: () =>
+        `+=${Math.max(
+          window.innerHeight * 1.4,
+          descriptionWords.length * 45,
+        )}`,
+
+      scrub: 0.35,
+      invalidateOnRefresh: true,
+
+      // markers: true,
     },
-    })
+  })
 
-    statNumberElements.value.forEach((element, index) => {
+  statNumberElements.value.forEach((element, index) => {
     const stat = stats[index]
+
+    if (!stat) {
+      return
+    }
 
     const counter = {
       value: 0,
@@ -151,7 +167,12 @@ onMounted(() => {
       },
     })
   })
-  }, sectionRef.value)
+}, sectionRef.value)
+
+requestAnimationFrame(() => {
+  ScrollTrigger.refresh()
+})
+
 })
 
 onBeforeUnmount(() => {
@@ -163,12 +184,12 @@ onBeforeUnmount(() => {
   <section
     id="what-i-do"
     ref="sectionRef"
-    class="bg-main pb-24 pt-20 sm:pb-28 sm:pt-24 lg:pb-36 lg:pt-28"
+    class="bg-main pb-24 pt-20 sm:pb-28 sm:pt-24 lg:py-16"
   >
     <SectionDivider />
 
     <div
-      class="mx-auto mt-12 grid w-full max-w-[1600px] gap-10 px-5 sm:mt-14 sm:px-8 lg:mt-16 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-16 lg:px-14"
+      class="mx-auto mt-12 grid w-full max-w-[1600px] gap-10 px-5 sm:mt-14 sm:px-8 lg:mt-10 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-16 lg:px-14"
     >
       <!-- Judul kiri -->
       <div>

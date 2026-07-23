@@ -26,7 +26,7 @@ const heroLines: HeroWord[][] = [
     { text: 'to' },
   ],
   [
-    { text: 'use', className: 'text-text-secondary' },
+    { text: 'use'},
   ],
 ]
 
