@@ -1,15 +1,113 @@
 <script setup lang="ts">
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { gsap } from 'gsap'
+
 import footerImage from '../../assets/Footer.png'
+
+const changingWordRef = ref<HTMLElement | null>(null)
+
+const changingWords = ['Build', 'Create', 'Design']
+
+let changingWordIndex = 0
+let changingWordTimeline: gsap.core.Timeline | undefined
+
+onMounted(() => {
+  const wordElement = changingWordRef.value
+
+  if (!wordElement) {
+    return
+  }
+
+  const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)',
+  ).matches
+
+  if (prefersReducedMotion) {
+    wordElement.textContent = changingWords[0]
+    return
+  }
+
+  changingWordTimeline = gsap.timeline({
+    repeat: -1,
+  })
+
+  changingWordTimeline
+    // Kata berhenti sebentar sebelum berganti.
+    .to(
+      {},
+      {
+        duration: 1.1,
+      },
+    )
+
+    // Kata lama naik dan menghilang.
+    .to(wordElement, {
+      yPercent: -120,
+      autoAlpha: 0,
+      filter: 'blur(6px)',
+      duration: 0.28,
+      ease: 'power2.in',
+    })
+
+    // Mengganti isi kata.
+    .call(() => {
+      changingWordIndex = (changingWordIndex + 1) % changingWords.length
+
+      wordElement.textContent = changingWords[changingWordIndex]
+    })
+
+    // Kata baru disiapkan dari bawah.
+    .set(wordElement, {
+      yPercent: 120,
+      autoAlpha: 0,
+      filter: 'blur(6px)',
+    })
+
+    // Kata baru naik ke posisi normal.
+    .to(wordElement, {
+      yPercent: 0,
+      autoAlpha: 1,
+      filter: 'blur(0px)',
+      duration: 0.4,
+      ease: 'power3.out',
+    })
+})
+
+onBeforeUnmount(() => {
+  changingWordTimeline?.kill()
+})
 </script>
 
 <template>
   <footer
     id="contact"
-    class="relative overflow-hidden bg-main pt-28 sm:pt-36 lg:pt-44"
+    class="relative overflow-hidden bg-main pt-16 sm:pt-20 lg:pt-24"
   >
+    <!-- CTA footer -->
+    <div class="mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:px-24">
+      <h2
+        class="max-w-[600px] font-display text-[22px] font-semibold uppercase leading-[1.05] tracking-[-0.035em] text-white sm:text-[26px] lg:text-[30px]"
+      >
+        <span class="flex items-baseline gap-[0.25em]">
+          <span>Let's</span>
+
+          <span class="inline-flex min-w-[7ch] overflow-hidden align-bottom">
+            <span
+              ref="changingWordRef"
+              class="footer-changing-word inline-block"
+            >
+              Build
+            </span>
+          </span>
+        </span>
+
+        <span class="block"> Something great </span>
+      </h2>
+    </div>
+
     <!-- Panel merah full width -->
     <div
-      class="footer-panel relative w-full bg-accent pb-7 pt-16 sm:pb-9 sm:pt-20 lg:pb-10 lg:pt-24"
+      class="footer-panel relative mt-[clamp(7rem,11vw,13rem)] w-full bg-accent pb-7 pt-16 sm:pb-9 sm:pt-20 lg:pb-10 lg:pt-24"
     >
       <!-- Nama besar -->
       <img
@@ -141,5 +239,17 @@ import footerImage from '../../assets/Footer.png'
 
 .footer-title {
   display: block;
+}
+
+.footer-changing-word {
+  will-change: transform, opacity, filter;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-changing-word {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
 }
 </style>
