@@ -25,6 +25,9 @@ let gsapMatchMedia: ReturnType<typeof gsap.matchMedia> | undefined
 
 onMounted(async () => {
   await nextTick()
+  if (document.fonts) {
+    await document.fonts.ready
+  }
 
   const section = sectionRef.value
   const title = titleRef.value
@@ -131,48 +134,34 @@ onMounted(async () => {
       return Math.abs(getEndX() - getStartX())
     }
 
-    const horizontalTween = gsap.fromTo(
-      track,
-      {
-        x: getStartX,
+    gsap.set(track, {
+      x: getStartX(),
+      force3D: true,
+    })
+
+    const horizontalTween = gsap.to(track, {
+      x: getEndX,
+      ease: 'none',
+      force3D: true,
+
+      scrollTrigger: {
+        trigger: pinStage,
+        pin: true,
+        pinSpacing: true,
+
+        start: 'top top',
+
+        end: () =>
+          `+=${Math.max(
+            getHorizontalDistance() * 1.05,
+            window.innerHeight * 1.1,
+          )}`,
+
+        scrub: 0.35,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
       },
-      {
-        x: getEndX,
-        ease: 'none',
-
-        scrollTrigger: {
-          /*
-            Yang menjadi trigger dan pin sekarang
-            hanya panggung card, bukan seluruh section.
-          */
-          trigger: pinStage,
-          pin: true,
-
-          /*
-            Pin dimulai ketika panggung card memenuhi layar.
-            Header sudah scroll keluar lebih dahulu.
-          */
-          start: 'top top',
-
-          /*
-            Setelah card terakhir selesai ke tengah,
-            pin dilepas dan scroll vertikal berlanjut.
-          */
-          end: () =>
-            `+=${Math.max(
-              getHorizontalDistance() * 1.2,
-              window.innerHeight * 1.25,
-            )}`,
-
-          scrub: 0.8,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-
-          // Aktifkan sementara ketika ingin mengecek:
-          // markers: true,
-        },
-      },
-    )
+    })
 
     return () => {
       horizontalTween.scrollTrigger?.kill()
@@ -200,6 +189,7 @@ onMounted(async () => {
   })
 
   requestAnimationFrame(() => {
+    ScrollTrigger.sort()
     ScrollTrigger.refresh()
   })
 })
@@ -211,19 +201,12 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section
-    id="experience"
-    ref="sectionRef"
-    class="bg-main pt-16 sm:pt-20 lg:pt-24"
-  >
-    <!-- Divider dan header tidak ikut dipin -->
-    <SectionDivider />
-
+  <section id="experience" ref="sectionRef" class="relative bg-main pt-16">
     <div
       class="mx-auto mt-14 w-full max-w-[1600px] px-5 text-center sm:mt-16 sm:px-8 lg:mt-20 lg:px-14"
     >
       <p
-        class="font-display text-lg font-semibold uppercase text-accent sm:text-xl"
+        class="font-display text-lg font-semibold uppercase text-accent sm:text-xl lg:text-2xl"
       >
         Experience
       </p>
@@ -231,7 +214,7 @@ onBeforeUnmount(() => {
       <h2
         ref="titleRef"
         aria-label="Projects That Define My Work."
-        class="mx-auto mt-5 flex max-w-[1100px] flex-wrap justify-center gap-x-[0.18em] gap-y-[0.06em] font-display text-[34px] font-semibold uppercase leading-none tracking-[-0.045em] text-text-primary sm:text-[44px] lg:text-[52px]"
+        class="mx-auto mt-5 flex max-w-[1100px] flex-wrap justify-center gap-x-[0.18em] gap-y-[0.06em] font-display text-[34px] font-semibold uppercase leading-none tracking-[-0.045em] text-text-primary sm:text-[36px] lg:text-[40px]"
       >
         <span
           v-for="word in experienceTitleWords"
@@ -251,7 +234,8 @@ onBeforeUnmount(() => {
       <p
         class="mx-auto mt-5 max-w-[650px] text-sm leading-7 text-text-secondary sm:text-base"
       >
-        Designing digital products, websites, and scalable design systems.
+        The teams, companies, and collaborations that have shaped my growth as a
+        product designer.
       </p>
     </div>
 
@@ -259,7 +243,7 @@ onBeforeUnmount(() => {
       Hanya area ini yang dipin.
       h-screen membuat card memperoleh satu layar penuh.
     -->
-    <div ref="pinStageRef" class="relative h-[100svh] overflow-hidden">
+    <div ref="pinStageRef" class="relative h-[100svh] overflow-hidden bg-main">
       <!-- Batasnya sama dengan konten section lain -->
       <div class="mx-auto h-full w-full max-w-[1600px] px-5 sm:px-8 lg:px-14">
         <div
@@ -331,18 +315,20 @@ onBeforeUnmount(() => {
   display: none;
 }
 
+.experience-track {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
 .experience-edge {
   position: absolute;
   z-index: 30;
   top: 0;
   bottom: 0;
 
-  width: clamp(90px, 10vw, 170px);
+  width: clamp(70px, 8vw, 130px);
 
   pointer-events: none;
-
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
 }
 
 .experience-edge--left {
@@ -350,24 +336,10 @@ onBeforeUnmount(() => {
 
   background: linear-gradient(
     90deg,
-    #1d1d1d 0%,
-    rgba(29, 29, 29, 0.96) 22%,
-    rgba(29, 29, 29, 0.7) 50%,
-    rgba(29, 29, 29, 0.25) 78%,
-    transparent 100%
-  );
-
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    #000 0%,
-    rgba(0, 0, 0, 0.9) 55%,
-    transparent 100%
-  );
-
-  mask-image: linear-gradient(
-    90deg,
-    #000 0%,
-    rgba(0, 0, 0, 0.9) 55%,
+    #0a0a0a 0%,
+    rgba(10, 10, 10, 0.95) 28%,
+    rgba(10, 10, 10, 0.68) 55%,
+    rgba(10, 10, 10, 0.25) 78%,
     transparent 100%
   );
 }
@@ -377,24 +349,10 @@ onBeforeUnmount(() => {
 
   background: linear-gradient(
     270deg,
-    #1d1d1d 0%,
-    rgba(29, 29, 29, 0.96) 22%,
-    rgba(29, 29, 29, 0.7) 50%,
-    rgba(29, 29, 29, 0.25) 78%,
-    transparent 100%
-  );
-
-  -webkit-mask-image: linear-gradient(
-    270deg,
-    #000 0%,
-    rgba(0, 0, 0, 0.9) 55%,
-    transparent 100%
-  );
-
-  mask-image: linear-gradient(
-    270deg,
-    #000 0%,
-    rgba(0, 0, 0, 0.9) 55%,
+    #0a0a0a 0%,
+    rgba(10, 10, 10, 0.95) 28%,
+    rgba(10, 10, 10, 0.68) 55%,
+    rgba(10, 10, 10, 0.25) 78%,
     transparent 100%
   );
 }

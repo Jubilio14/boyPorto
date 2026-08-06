@@ -11,8 +11,7 @@ type TemplateRefValue = Element | ComponentPublicInstance | null
 
 gsap.registerPlugin(ScrollTrigger)
 
-const description =
-  'I create digital experiences that balance user needs, business goals, and long-term scalability. Every decision is guided by clarity, consistency, and meaningful impact.'
+const description = `I BELIEVE GREAT PRODUCTS AREN'T JUST BEAUTIFUL. THEY SOLVE PROBLEMS, SUPPORT BUSINESS GOALS, AND REMAIN SCALABLE AS THEY GROW. THAT'S THE MINDSET I BRING TO EVERY PROJECT I DESIGN.`
 
 const descriptionWords = description.split(' ')
 
@@ -25,18 +24,18 @@ interface StatItem {
 
 const stats: StatItem[] = [
   {
-    value: 3,
+    value: 1,
     suffix: '+',
     label: 'Years of Experience',
     description:
-      'Designing digital products, websites, and scalable design systems.',
+      'Building experience across product design, UI/UX, websites, and scalable design systems.',
   },
   {
-    value: 30,
+    value: 10,
     suffix: '+',
     label: 'Projects Completed',
     description:
-      'UI/UX, websites, design systems, and freelance design projects.',
+      'Including product redesigns, client work, and internal design system initiatives.',
   },
 ]
 
@@ -168,8 +167,6 @@ onBeforeUnmount(() => {
     ref="sectionRef"
     class="bg-main pb-24 pt-20 sm:pb-28 sm:pt-24 lg:py-16"
   >
-    <SectionDivider />
-
     <div
       class="mx-auto mt-12 grid w-full max-w-[1600px] gap-10 px-5 sm:mt-14 sm:px-8 lg:mt-10 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-16 lg:px-24"
     >
@@ -220,9 +217,7 @@ onBeforeUnmount(() => {
               0{{ stat.suffix }}
             </p>
 
-            <h3
-              class="mt-3 text-sm font-medium text-text-secondary sm:text-base"
-            >
+            <h3 class="mt-3 text-sm font-medium text-accent sm:text-base">
               {{ stat.label }}
             </h3>
 

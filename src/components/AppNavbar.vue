@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-
+import { HugeiconsIcon } from '@hugeicons/vue'
+import { Mail02Icon } from '@hugeicons/core-free-icons'
 import logoBoy from '../assets/logoBoy.png'
 
 const isCollapsed = ref(false)
@@ -137,29 +138,13 @@ onBeforeUnmount(() => {
             : 'w-11 translate-x-0 scale-100 border border-white/25 opacity-100 hover:-translate-y-1 sm:w-12'
         "
       >
-        <svg
-          viewBox="0 0 24 24"
-          class="h-[22px] w-[22px] shrink-0"
-          aria-hidden="true"
-        >
-          <rect
-            x="2.5"
-            y="4.5"
-            width="19"
-            height="15"
-            rx="2.5"
-            fill="#ffffff"
-          />
-
-          <path
-            d="M4.5 7.5L12 13L19.5 7.5"
-            fill="none"
-            stroke="#1d1d1d"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
+        <HugeiconsIcon
+          :icon="Mail02Icon"
+          :size="22"
+          color="currentColor"
+          :stroke-width="1.5"
+          class="shrink-0 text-white"
+        />
       </a>
     </nav>
   </header>

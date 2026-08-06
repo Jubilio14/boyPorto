@@ -1,3 +1,8 @@
+import ravLogo from '../assets/images/experiences/ravLogo.png'
+import bankSumut from '../assets/images/experiences/bankSumut.png'
+import shilStudio from '../assets/images/experiences/shilStudio.png'
+import tradeAsia from '../assets/images/experiences/tradeAsia.png'
+
 export interface Experience {
   id: number
   period: string
@@ -6,95 +11,81 @@ export interface Experience {
   location: string
   responsibilities: string[]
   datePosition: 'top' | 'bottom'
-
-  // Nanti diisi URL hasil import gambar.
   logo?: string
-
-  // Warna placeholder selama logo belum tersedia.
-  logoColor: string
-
-  // Untuk alt text ketika sudah memakai gambar.
-  logoAlt: string
-
+  logoBackground?: string
   isCurrent?: boolean
 }
 
 export const experiences: Experience[] = [
   {
     id: 1,
-    period: "Jul '25 – Jul '26",
+    period: "Jul '26 – Present",
     role: 'UI/UX Designer',
     company: 'Shil Studio',
     location: 'Remote, Australia',
     datePosition: 'top',
     isCurrent: true,
 
-    logoColor: '#D9D9D9',
-    logoAlt: 'Shil Studio logo',
+    logo: shilStudio,
+    logoBackground: '#000000',
 
     responsibilities: [
-      'This POS system was redesigned from the ground up to replace manual store operations with a structured, data-driven system that actually works for the people using it.',
+      'Optimized existing Figma files by improving Auto Layout, component structure, and organization to create developer-friendly design files.',
 
-      'This POS system was redesigned from the ground up to replace manual store operations with a structured, data-driven system that actually works for the people using it.',
-
-      'This POS system was redesigned from the ground up to replace manual store operations with a structured, data-driven system that actually works for the people using it.',
+      'Adapted desktop designs into responsive mobile layouts while maintaining visual consistency, usability, and design system standards.',
     ],
   },
   {
     id: 2,
-    period: "Jul '25 – Jul '26",
+    period: "Dec '24 – Present",
     role: 'UI/UX Designer',
-    company: 'Shil Studio',
-    location: 'Remote, Australia',
+    company: 'Freelance',
+    location: 'Jakarta, Indonesia',
     datePosition: 'bottom',
-
-    logoColor: '#D9D9D9',
-    logoAlt: 'Shil Studio logo',
+    logo: ravLogo,
+    logoBackground: '#ffffff',
 
     responsibilities: [
-      'This POS system was redesigned from the ground up to replace manual store operations with a structured, data-driven system that actually works for the people using it.',
+      'Delivered end-to-end UI/UX design for website and mobile projects, from discovery and research to high-fidelity design and handoff.',
 
-      'This POS system was redesigned from the ground up to replace manual store operations with a structured, data-driven system that actually works for the people using it.',
+      'Collaborated with business owners to translate goals into user-centered digital experiences through strategy, design, and implementation.',
 
-      'This POS system was redesigned from the ground up to replace manual store operations with a structured, data-driven system that actually works for the people using it.',
+      'Provided ongoing maintenance and design consultation, building long-term client relationships through repeat engagements and referrals.',
     ],
   },
   {
     id: 3,
     period: "Jul '25 – Jul '26",
     role: 'UI/UX Designer',
-    company: 'Shil Studio',
-    location: 'Remote, Australia',
+    company: 'Tradeasia International',
+    location: 'Jakarta, Indonesia',
     datePosition: 'top',
-
-    logoColor: '#D9D9D9',
-    logoAlt: 'Shil Studio logo',
-
+    logo: tradeAsia,
+    logoBackground: '#123C69',
     responsibilities: [
-      'This POS system was redesigned from the ground up to replace manual store operations with a structured, data-driven system that actually works for the people using it.',
+      'Established a centralized design system across 50+ websites, improving design consistency and collaboration between Design and Development teams.',
 
-      'This POS system was redesigned from the ground up to replace manual store operations with a structured, data-driven system that actually works for the people using it.',
+      'Conducted competitor benchmarking and business analysis to design features that improved user engagement and supported business objectives.',
 
-      'This POS system was redesigned from the ground up to replace manual store operations with a structured, data-driven system that actually works for the people using it.',
+      'Led UI/UX design for enterprise websites and performed design QA to ensure consistency, usability, and implementation quality.',
     ],
   },
   {
     id: 4,
-    period: "Jul '25 – Jul '26",
-    role: 'UI/UX Designer',
-    company: 'Shil Studio',
-    location: 'Remote, Australia',
+    period: "Jul '22 – Aug '22",
+    role: 'Web Designer',
+    company: 'PT. Bank Sumut - Intern',
+    location: 'Jakarta, Indonesia',
     datePosition: 'bottom',
-
-    logoColor: '#D9D9D9',
-    logoAlt: 'Shil Studio logo',
+    logo: bankSumut,
+    logoBackground: '#FFFFFF',
 
     responsibilities: [
-      'This POS system was redesigned from the ground up to replace manual store operations with a structured, data-driven system that actually works for the people using it.',
+      'Contributed to the UI/UX design of a CSR website through user research, wireframing, prototyping, and usability testing.',
 
-      'This POS system was redesigned from the ground up to replace manual store operations with a structured, data-driven system that actually works for the people using it.',
+      'Collaborated with stakeholders to translate business requirements into intuitive and user-centered digital experiences.',
 
-      'This POS system was redesigned from the ground up to replace manual store operations with a structured, data-driven system that actually works for the people using it.',
+      'Strengthened foundational UI/UX skills by participating in the complete design process within a professional environment.',
     ],
   },
 ]

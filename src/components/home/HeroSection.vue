@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { MapPin } from 'lucide-vue-next'
+import { HugeiconsIcon } from '@hugeicons/vue'
+import { Location01Icon } from '@hugeicons/core-free-icons'
 import { gsap } from 'gsap'
-
+import heroImage from '../../assets/hero.png'
 import profileImage from '../../assets/images/profile-boy.png'
 
 interface HeroWord {
@@ -91,10 +92,15 @@ onBeforeUnmount(() => {
     ref="heroSection"
     class="hero relative min-h-screen overflow-hidden bg-main"
   >
-    <!-- Background gradient -->
-    <div class="hero__background absolute inset-0" aria-hidden="true" />
+    <!-- Background image -->
+    <img
+      :src="heroImage"
+      alt=""
+      class="hero__background absolute inset-0 h-full w-full object-cover"
+      aria-hidden="true"
+    />
 
-    <!-- Gradient tambahan agar bagian kiri tetap terbaca -->
+    <!-- Overlay agar teks tetap terbaca -->
     <div class="hero__text-overlay absolute inset-0" aria-hidden="true" />
 
     <!-- Foto -->
@@ -111,7 +117,7 @@ onBeforeUnmount(() => {
 
     <!-- Fade bawah supaya foto menyatu dengan background -->
     <div
-      class="hero__bottom-fade pointer-events-none absolute inset-x-0 bottom-0 z-[3] h-[38%]"
+      class="hero__bottom-fade pointer-events-none absolute inset-x-0 bottom-0 z-[4] h-[30%]"
       aria-hidden="true"
     />
 
@@ -175,11 +181,12 @@ onBeforeUnmount(() => {
         <div class="flex items-center gap-2 text-[10px] sm:text-xs">
           <span class="text-white/40"> Based In </span>
 
-          <MapPin
+          <HugeiconsIcon
+            :icon="Location01Icon"
             :size="14"
-            :stroke-width="2"
+            :strokeWidth="2"
+            color="currentColor"
             class="text-[#c1203a]"
-            fill="currentColor"
           />
 
           <span class="text-white/90"> Jakarta, Indonesia </span>
@@ -250,10 +257,11 @@ onBeforeUnmount(() => {
 .hero__bottom-fade {
   background: linear-gradient(
     to bottom,
-    transparent 0%,
-    rgba(29, 29, 29, 0.35) 35%,
-    rgba(29, 29, 29, 0.94) 90%,
-    #1d1d1d 100%
+    rgba(10, 10, 10, 0) 0%,
+    rgba(10, 10, 10, 0.12) 25%,
+    rgba(10, 10, 10, 0.62) 68%,
+    rgba(10, 10, 10, 0.92) 88%,
+    #0a0a0a 100%
   );
 }
 
@@ -329,14 +337,14 @@ onBeforeUnmount(() => {
   }
 
   .hero__bottom-fade {
-    height: 45%;
+    height: 42%;
 
     background: linear-gradient(
       to bottom,
-      transparent 0%,
-      rgba(29, 29, 29, 0.24) 30%,
-      rgba(29, 29, 29, 0.96) 88%,
-      #1d1d1d 100%
+      rgba(10, 10, 10, 0) 0%,
+      rgba(10, 10, 10, 0.18) 30%,
+      rgba(10, 10, 10, 0.82) 78%,
+      #0a0a0a 100%
     );
   }
 }

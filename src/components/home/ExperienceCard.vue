@@ -75,16 +75,16 @@ const badgeRotation = computed(() => {
         <!-- Logo, role, dan company -->
         <div class="flex items-center gap-3">
           <div
-            class="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden"
+            class="flex size-[42px] shrink-0 items-center justify-center overflow-hidden rounded-[6px]"
             :style="{
-              backgroundColor: experience.logoColor,
+              backgroundColor: experience.logoBackground ?? '#000000',
             }"
           >
             <img
               v-if="experience.logo"
               :src="experience.logo"
-              :alt="experience.logoAlt"
-              class="h-full w-full object-contain"
+              :alt="`${experience.company} logo`"
+              class="h-[72%] w-[72%] object-contain"
             />
           </div>
 

@@ -223,29 +223,28 @@ onBeforeUnmount(() => {
 
 <template>
   <section id="work" class="bg-main pt-20 sm:pt-24 lg:pt-16">
-    <SectionDivider />
-
     <!-- Header project -->
     <div
       class="mx-auto mt-12 w-full max-w-[1600px] px-5 text-center sm:mt-14 sm:px-8 lg:mt-10 lg:px-14"
     >
       <p
-        class="font-display text-lg font-semibold uppercase text-accent sm:text-xl"
+        class="font-display text-lg font-semibold uppercase text-accent sm:text-xl lg:text-2xl"
       >
         Selected Work
       </p>
 
       <h2
-        class="mx-auto mt-5 max-w-[900px] font-display text-[38px] font-semibold uppercase leading-[0.96] tracking-[-0.045em] text-text-primary sm:text-[48px] lg:text-[64px]"
+        class="mx-auto mt-5 max-w-[900px] font-display text-[32px] font-semibold uppercase leading-[0.96] tracking-[-0.045em] text-text-primary sm:text-[36px] lg:text-[40px]"
       >
         Projects That Define My Work.
       </h2>
-      <!-- 
-    <p
-        class="mx-auto mt-5 max-w-[680px] text-sm leading-7 text-text-secondary sm:text-base"
-    >
-        Designing digital products, websites, and scalable design systems.
-    </p> -->
+
+      <p
+        class="mx-auto mt-5 max-w-[680px] text-sm leading-7 text-text-secondary lg:text-base"
+      >
+        Each project tells a different story from research driven case studies
+        to real-world products and design systems built for scale.
+      </p>
     </div>
 
     <!--
