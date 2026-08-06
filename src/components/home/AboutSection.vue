@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import {
-  onBeforeUnmount,
-  onMounted,
-  ref,
-} from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -12,12 +8,7 @@ import profileImage from '../../assets/images/profile-boy.png'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const aboutTitleWords = [
-  'A',
-  'Little',
-  'About',
-  'Myself',
-]
+const aboutTitleWords = ['A', 'Little', 'About', 'Myself']
 
 const sectionRef = ref<HTMLElement | null>(null)
 const titleRef = ref<HTMLElement | null>(null)
@@ -30,9 +21,8 @@ onMounted(() => {
   }
 
   animationContext = gsap.context(() => {
-    const words = titleRef.value!.querySelectorAll<HTMLElement>(
-      '[data-about-word]',
-    )
+    const words =
+      titleRef.value!.querySelectorAll<HTMLElement>('[data-about-word]')
 
     gsap.set(words, {
       yPercent: 120,
@@ -86,9 +76,7 @@ onBeforeUnmount(() => {
         <figure
           class="about-polaroid relative w-full max-w-[280px] rotate-[-4deg] bg-white p-4 pb-14 shadow-[0_24px_70px_rgba(0,0,0,0.28)] sm:max-w-[320px] sm:p-5 sm:pb-16 lg:max-w-[350px]"
         >
-          <div
-            class="relative aspect-[4/5] overflow-hidden bg-[#ffa34d]"
-          >
+          <div class="relative aspect-[4/5] overflow-hidden bg-[#ffa34d]">
             <!-- Dekorasi ringan di belakang foto -->
             <div
               class="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.18),transparent_50%)]"
@@ -105,9 +93,7 @@ onBeforeUnmount(() => {
       </div>
 
       <!-- Konten About -->
-      <div
-        class="w-full lg:ml-auto lg:max-w-[900px] lg:text-right"
-      >
+      <div class="w-full lg:ml-auto lg:max-w-[900px] lg:text-right">
         <p
           class="font-display text-lg font-semibold uppercase tracking-[-0.02em] text-accent sm:text-xl"
         >
@@ -138,11 +124,20 @@ onBeforeUnmount(() => {
           class="mt-7 space-y-6 text-sm leading-7 text-text-secondary sm:text-base sm:leading-8"
         >
           <p>
-            My journey into design started with graphic design, where I spent years creating visual identities, marketing materials, and digital experiences for a wide range of clients. Along the way, I discovered that my passion wasn't just making things look good it was understanding how design could solve problems and create better experiences for people.
+            My journey into design started with graphic design, where I spent
+            years creating visual identities, marketing materials, and digital
+            experiences for a wide range of clients. Along the way, I discovered
+            that my passion wasn't just making things look good it was
+            understanding how design could solve problems and create better
+            experiences for people.
           </p>
 
           <p>
-            That curiosity naturally led me to UI/UX design. Today, I focus on designing digital products that balance user needs, business goals, and long-term scalability. From building design systems to crafting intuitive interfaces, I enjoy turning complex ideas into experiences that feel simple, purposeful, and easy to use.
+            That curiosity naturally led me to UI/UX design. Today, I focus on
+            designing digital products that balance user needs, business goals,
+            and long-term scalability. From building design systems to crafting
+            intuitive interfaces, I enjoy turning complex ideas into experiences
+            that feel simple, purposeful, and easy to use.
           </p>
         </div>
 

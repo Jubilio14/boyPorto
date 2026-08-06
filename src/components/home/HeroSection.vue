@@ -14,20 +14,10 @@ const heroLines: HeroWord[][] = [
   [
     { text: 'I' },
     { text: 'design', className: 'text-accent' },
-    { text: 'digital' },
-  ],
-  [
     { text: 'products' },
-    { text: 'that' },
   ],
-  [
-    { text: 'people' },
-    { text: 'love', className: 'text-accent' },
-    { text: 'to' },
-  ],
-  [
-    { text: 'use'},
-  ],
+  [{ text: 'that' }, { text: 'solve' }, { text: 'real' }],
+  [{ text: 'problem', className: 'text-accent' }],
 ]
 
 const heroSection = ref<HTMLElement | null>(null)
@@ -37,19 +27,13 @@ const heroTitle = ref<HTMLElement | null>(null)
 let animationContext: gsap.Context | undefined
 
 onMounted(() => {
-  if (
-    !heroSection.value ||
-    !profileWrapper.value ||
-    !heroTitle.value
-  ) {
+  if (!heroSection.value || !profileWrapper.value || !heroTitle.value) {
     return
   }
 
   animationContext = gsap.context(() => {
     const letters = Array.from(
-      heroTitle.value!.querySelectorAll<HTMLElement>(
-        '[data-hero-letter]',
-      ),
+      heroTitle.value!.querySelectorAll<HTMLElement>('[data-hero-letter]'),
     )
 
     const timeline = gsap.timeline()
@@ -108,20 +92,14 @@ onBeforeUnmount(() => {
     class="hero relative min-h-screen overflow-hidden bg-main"
   >
     <!-- Background gradient -->
-    <div
-      class="hero__background absolute inset-0"
-      aria-hidden="true"
-    />
+    <div class="hero__background absolute inset-0" aria-hidden="true" />
 
     <!-- Gradient tambahan agar bagian kiri tetap terbaca -->
-    <div
-      class="hero__text-overlay absolute inset-0"
-      aria-hidden="true"
-    />
+    <div class="hero__text-overlay absolute inset-0" aria-hidden="true" />
 
     <!-- Foto -->
     <div
-      ref="profileWrapper"  
+      ref="profileWrapper"
       class="hero__image-wrapper pointer-events-none absolute bottom-0 right-[-15%] z-[2] h-[62%] w-[105%] sm:right-[-6%] sm:h-[78%] sm:w-[78%] lg:right-[-2%] lg:h-[94%] lg:w-[58%] xl:right-[1%] xl:w-[55%]"
     >
       <img
@@ -141,22 +119,18 @@ onBeforeUnmount(() => {
     <div
       class="relative z-10 mx-auto flex min-h-screen w-full max-w-[1600px] px-5 pb-20 pt-28 sm:px-8 sm:pt-32 lg:items-center lg:px-24 lg:pb-24 lg:pt-28"
     >
-      <div
-        class="flex w-full flex-col lg:w-[56%]"
-      >
+      <div class="flex w-full flex-col lg:w-[56%]">
         <!-- Sapaan -->
         <p
-        class="mb-4 flex items-center gap-2 text-xs font-medium text-text-primary sm:mb-5 sm:text-sm"
+          class="mb-4 flex items-center gap-2 text-xs font-medium text-text-primary sm:mb-5 sm:text-sm"
         >
-        <span class="h-2 w-2 shrink-0 rounded-full bg-accent" />
+          <span class="h-2 w-2 shrink-0 rounded-full bg-accent" />
 
-        <span>
+          <span>
             Hello I’m
-            <span class="font-semibold text-accent">
-            Boy
-            </span>
+            <span class="font-semibold text-accent"> Boy </span>
             !
-        </span>
+          </span>
         </p>
 
         <!-- Heading -->
@@ -186,10 +160,7 @@ onBeforeUnmount(() => {
                 {{ letter }}
               </span>
 
-              <span
-                v-if="wordIndex < line.length - 1"
-                aria-hidden="true"
-              >
+              <span v-if="wordIndex < line.length - 1" aria-hidden="true">
                 &nbsp;
               </span>
             </span>
@@ -201,12 +172,8 @@ onBeforeUnmount(() => {
       <div
         class="absolute bottom-6 left-5 z-20 flex items-center gap-3 sm:bottom-8 sm:left-8 lg:bottom-9 lg:left-24"
       >
-        <div
-          class="flex items-center gap-2 text-[10px] sm:text-xs"
-        >
-          <span class="text-white/40">
-            Based In
-          </span>
+        <div class="flex items-center gap-2 text-[10px] sm:text-xs">
+          <span class="text-white/40"> Based In </span>
 
           <MapPin
             :size="14"
@@ -215,9 +182,7 @@ onBeforeUnmount(() => {
             fill="currentColor"
           />
 
-          <span class="text-white/90">
-            Jakarta, Indonesia
-          </span>
+          <span class="text-white/90"> Jakarta, Indonesia </span>
         </div>
       </div>
     </div>
@@ -297,9 +262,7 @@ onBeforeUnmount(() => {
 }
 
 .hero__image {
-  filter: drop-shadow(
-    -24px 16px 40px rgba(0, 0, 0, 0.18)
-  );
+  filter: drop-shadow(-24px 16px 40px rgba(0, 0, 0, 0.18));
 }
 
 /* Tablet dan mobile */

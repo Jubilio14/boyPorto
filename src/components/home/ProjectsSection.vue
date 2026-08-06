@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import {
-  nextTick,
-  onBeforeUnmount,
-  onMounted,
-  ref,
-} from 'vue'
+import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -17,9 +12,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const stageRef = ref<HTMLElement | null>(null)
 
-let gsapMatchMedia:
-  | ReturnType<typeof gsap.matchMedia>
-  | undefined
+let gsapMatchMedia: ReturnType<typeof gsap.matchMedia> | undefined
 
 onMounted(async () => {
   await nextTick()
@@ -38,37 +31,20 @@ onMounted(async () => {
   */
   gsapMatchMedia.add('(min-width: 768px)', () => {
     const slides = Array.from(
-      stage.querySelectorAll<HTMLElement>(
-        '[data-project-slide]',
-      ),
+      stage.querySelectorAll<HTMLElement>('[data-project-slide]'),
     )
 
     const panels = slides
-      .map((slide) =>
-        slide.querySelector<HTMLElement>(
-          '[data-project-panel]',
-        ),
-      )
-      .filter(
-        (panel): panel is HTMLElement =>
-          panel !== null,
-      )
+      .map((slide) => slide.querySelector<HTMLElement>('[data-project-panel]'))
+      .filter((panel): panel is HTMLElement => panel !== null)
 
     const overlays = slides
       .map((slide) =>
-        slide.querySelector<HTMLElement>(
-          '[data-project-overlay]',
-        ),
+        slide.querySelector<HTMLElement>('[data-project-overlay]'),
       )
-      .filter(
-        (overlay): overlay is HTMLElement =>
-          overlay !== null,
-      )
+      .filter((overlay): overlay is HTMLElement => overlay !== null)
 
-    if (
-      slides.length === 0 ||
-      panels.length !== slides.length
-    ) {
+    if (slides.length === 0 || panels.length !== slides.length) {
       return
     }
 
@@ -77,18 +53,17 @@ onMounted(async () => {
       Card lainnya berada di bawah layar.
     */
     gsap.set(slides, {
-      yPercent: (index) =>
-        index === 0 ? 0 : 115,
+      yPercent: (index) => (index === 0 ? 0 : 115),
     })
 
     gsap.set(panels, {
-     scale: 1,
-    transformOrigin: 'top center',
-    force3D: true,
+      scale: 1,
+      transformOrigin: 'top center',
+      force3D: true,
     })
 
     gsap.set(overlays, {
-     opacity: 0,
+      opacity: 0,
     })
 
     const timeline = gsap.timeline({
@@ -111,9 +86,7 @@ onMounted(async () => {
         */
         end: () =>
           `+=${Math.max(
-            (slides.length - 1) *
-              window.innerHeight *
-              1.15,
+            (slides.length - 1) * window.innerHeight * 1.15,
             window.innerHeight,
           )}`,
 
@@ -131,24 +104,24 @@ onMounted(async () => {
     const MIN_SCALE = 0.86
 
     for (
-    let currentIndex = 1;
-    currentIndex < slides.length;
-    currentIndex += 1
+      let currentIndex = 1;
+      currentIndex < slides.length;
+      currentIndex += 1
     ) {
-    const currentSlide = slides[currentIndex]
-    const position = `project-${currentIndex}`
+      const currentSlide = slides[currentIndex]
+      const position = `project-${currentIndex}`
 
-    timeline.addLabel(position)
+      timeline.addLabel(position)
 
-    /*
+      /*
         Setiap card yang sudah berada di belakang
         dibuat semakin kecil berdasarkan tingkatnya.
     */
-    for (
+      for (
         let previousIndex = 0;
         previousIndex < currentIndex;
         previousIndex += 1
-    ) {
+      ) {
         const previousPanel = panels[previousIndex]
         const previousOverlay = overlays[previousIndex]
 
@@ -159,51 +132,45 @@ onMounted(async () => {
         */
         const depth = currentIndex - previousIndex
 
-        const targetScale = Math.max(
-        1 - SCALE_STEP * depth,
-        MIN_SCALE,
-        )
+        const targetScale = Math.max(1 - SCALE_STEP * depth, MIN_SCALE)
 
-        const overlayOpacity = Math.min(
-        depth * 0.12,
-        0.32,
-        )
+        const overlayOpacity = Math.min(depth * 0.12, 0.32)
 
         timeline.to(
-        previousPanel,
-        {
+          previousPanel,
+          {
             scale: targetScale,
             force3D: true,
             duration: 1,
-        },
-        position,
+          },
+          position,
         )
 
         if (previousOverlay) {
-        timeline.to(
-        previousOverlay,
-        {
-            opacity: overlayOpacity,
-            duration: 1,
-        },
-        position,
-        )
+          timeline.to(
+            previousOverlay,
+            {
+              opacity: overlayOpacity,
+              duration: 1,
+            },
+            position,
+          )
         }
-    }
+      }
 
-    /*
+      /*
         Card baru naik dari bawah dan menjadi
         card utama dengan ukuran penuh.
     */
-    timeline.to(
+      timeline.to(
         currentSlide,
         {
-            yPercent: 0,
-            force3D: true,
-            duration: 1,
+          yPercent: 0,
+          force3D: true,
+          duration: 1,
         },
         position,
-    )
+      )
     }
 
     return () => {
@@ -216,11 +183,11 @@ onMounted(async () => {
 
       gsap.set(panels, {
         clearProps: 'transform',
-     })
+      })
 
-        gsap.set(overlays, {
+      gsap.set(overlays, {
         clearProps: 'opacity',
-     })
+      })
     }
   })
 
@@ -230,9 +197,7 @@ onMounted(async () => {
   */
   gsapMatchMedia.add('(max-width: 767px)', () => {
     const slides = Array.from(
-      stage.querySelectorAll<HTMLElement>(
-        '[data-project-slide]',
-      ),
+      stage.querySelectorAll<HTMLElement>('[data-project-slide]'),
     )
 
     gsap.set(slides, {
@@ -257,28 +222,25 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section
-    id="work"
-    class="bg-main pt-20 sm:pt-24 lg:pt-16"
-  >
+  <section id="work" class="bg-main pt-20 sm:pt-24 lg:pt-16">
     <SectionDivider />
 
     <!-- Header project -->
     <div
       class="mx-auto mt-12 w-full max-w-[1600px] px-5 text-center sm:mt-14 sm:px-8 lg:mt-10 lg:px-14"
     >
-    <p
+      <p
         class="font-display text-lg font-semibold uppercase text-accent sm:text-xl"
-    >
+      >
         Selected Work
-    </p>
+      </p>
 
-    <h2
+      <h2
         class="mx-auto mt-5 max-w-[900px] font-display text-[38px] font-semibold uppercase leading-[0.96] tracking-[-0.045em] text-text-primary sm:text-[48px] lg:text-[64px]"
-    >
+      >
         Projects That Define My Work.
-    </h2>
-<!-- 
+      </h2>
+      <!-- 
     <p
         class="mx-auto mt-5 max-w-[680px] text-sm leading-7 text-text-secondary sm:text-base"
     >
@@ -295,9 +257,7 @@ onBeforeUnmount(() => {
       class="project-stage relative mt-16 min-h-[100svh] overflow-hidden lg:mt-20"
     >
       <!-- Mobile -->
-      <div
-        class="space-y-8 px-4 pb-24 md:hidden"
-      >
+      <div class="space-y-8 px-4 pb-24 md:hidden">
         <ProjectCard
           v-for="(project, index) in projects"
           :key="project.id"
@@ -320,10 +280,7 @@ onBeforeUnmount(() => {
             zIndex: index + 1,
           }"
         >
-          <ProjectCard
-            :project="project"
-            :index="index"
-          />
+          <ProjectCard :project="project" :index="index" />
         </div>
       </div>
     </div>

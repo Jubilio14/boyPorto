@@ -60,10 +60,7 @@ defineProps<{
         <span
           class="flex h-9 w-9 items-center justify-center rounded-full bg-white text-accent transition-transform duration-300 group-hover:-rotate-[35deg]"
         >
-          <ArrowRight
-            :size="18"
-            :stroke-width="2.2"
-          />
+          <ArrowRight :size="18" :stroke-width="2.2" />
         </span>
 
         View Project
@@ -89,9 +86,9 @@ defineProps<{
 
     <!-- Overlay ketika card berada di belakang -->
     <div
-        data-project-overlay
-        class="pointer-events-none absolute inset-0 z-30 bg-black opacity-0"
-        aria-hidden="true"
+      data-project-overlay
+      class="pointer-events-none absolute inset-0 z-30 bg-black opacity-0"
+      aria-hidden="true"
     />
   </article>
 </template>

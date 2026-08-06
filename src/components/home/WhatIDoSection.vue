@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import {
-  onBeforeUnmount,
-  onBeforeUpdate,
-  onMounted,
-  ref,
-} from 'vue'
+import { onBeforeUnmount, onBeforeUpdate, onMounted, ref } from 'vue'
 
 import type { ComponentPublicInstance } from 'vue'
 import { gsap } from 'gsap'
@@ -12,10 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import SectionDivider from '../ui/SectionDivider.vue'
 
-type TemplateRefValue =
-  | Element
-  | ComponentPublicInstance
-  | null
+type TemplateRefValue = Element | ComponentPublicInstance | null
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -23,8 +15,6 @@ const description =
   'I create digital experiences that balance user needs, business goals, and long-term scalability. Every decision is guided by clarity, consistency, and meaningful impact.'
 
 const descriptionWords = description.split(' ')
-
-
 
 interface StatItem {
   value: number
@@ -52,10 +42,7 @@ const stats: StatItem[] = [
 
 const statNumberElements = ref<HTMLElement[]>([])
 
-const setStatNumberElement = (
-  element: TemplateRefValue,
-  index: number,
-) => {
+const setStatNumberElement = (element: TemplateRefValue, index: number) => {
   if (element instanceof HTMLElement) {
     statNumberElements.value[index] = element
   }
@@ -67,10 +54,7 @@ const wordElements = ref<HTMLElement[]>([])
 
 let animationContext: gsap.Context | undefined
 
-const setWordElement = (
-  element: TemplateRefValue,
-  index: number,
-) => {
+const setWordElement = (element: TemplateRefValue, index: number) => {
   if (element instanceof HTMLElement) {
     wordElements.value[index] = element
   }
@@ -95,84 +79,82 @@ onMounted(() => {
   }
 
   animationContext = gsap.context(() => {
-  /*
+    /*
     Kondisi awal seluruh kata.
   */
-  gsap.set(wordElements.value, {
-    color: '#9a9a9a',
-    filter: 'blur(2px)',
-    opacity: 0.45,
-  })
+    gsap.set(wordElements.value, {
+      color: '#9a9a9a',
+      filter: 'blur(2px)',
+      opacity: 0.45,
+    })
 
-  /*
+    /*
     Section ditahan ketika mencapai 20% layar.
     Scroll digunakan untuk menjalankan animasi kata.
   */
-  gsap.to(wordElements.value, {
-    color: '#ffffff',
-    filter: 'blur(0px)',
-    opacity: 1,
-    ease: 'none',
-    stagger: 0.08,
-
-    scrollTrigger: {
-      trigger: sectionRef.value,
-      start: 'top -5%',
-
-      pin: true,
-      pinSpacing: true,
-      anticipatePin: 1,
-
-      end: () =>
-        `+=${Math.max(
-          window.innerHeight * 1.4,
-          descriptionWords.length * 45,
-        )}`,
-
-      scrub: 0.35,
-      invalidateOnRefresh: true,
-
-      // markers: true,
-    },
-  })
-
-  statNumberElements.value.forEach((element, index) => {
-    const stat = stats[index]
-
-    if (!stat) {
-      return
-    }
-
-    const counter = {
-      value: 0,
-    }
-
-    gsap.to(counter, {
-      value: stat.value,
-      duration: 1.5,
-      ease: 'power2.out',
-      snap: {
-        value: 1,
-      },
-
-      onUpdate: () => {
-        element.textContent =
-          `${Math.round(counter.value)}${stat.suffix}`
-      },
+    gsap.to(wordElements.value, {
+      color: '#ffffff',
+      filter: 'blur(0px)',
+      opacity: 1,
+      ease: 'none',
+      stagger: 0.08,
 
       scrollTrigger: {
-        trigger: element,
-        start: 'top 85%',
-        once: true,
+        trigger: sectionRef.value,
+        start: 'top -5%',
+
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
+
+        end: () =>
+          `+=${Math.max(
+            window.innerHeight * 1.4,
+            descriptionWords.length * 45,
+          )}`,
+
+        scrub: 0.35,
+        invalidateOnRefresh: true,
+
+        // markers: true,
       },
     })
+
+    statNumberElements.value.forEach((element, index) => {
+      const stat = stats[index]
+
+      if (!stat) {
+        return
+      }
+
+      const counter = {
+        value: 0,
+      }
+
+      gsap.to(counter, {
+        value: stat.value,
+        duration: 1.5,
+        ease: 'power2.out',
+        snap: {
+          value: 1,
+        },
+
+        onUpdate: () => {
+          element.textContent = `${Math.round(counter.value)}${stat.suffix}`
+        },
+
+        scrollTrigger: {
+          trigger: element,
+          start: 'top 85%',
+          once: true,
+        },
+      })
+    })
+  }, sectionRef.value)
+
+  requestAnimationFrame(() => {
+    ScrollTrigger.refresh()
   })
-}, sectionRef.value)
-
-requestAnimationFrame(() => {
-  ScrollTrigger.refresh()
-})
-
 })
 
 onBeforeUnmount(() => {
@@ -244,9 +226,7 @@ onBeforeUnmount(() => {
               {{ stat.label }}
             </h3>
 
-            <p
-              class="mt-3 text-sm leading-6 text-text-primary/85"
-            >
+            <p class="mt-3 text-sm leading-6 text-text-primary/85">
               {{ stat.description }}
             </p>
           </article>

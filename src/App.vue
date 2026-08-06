@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import {
-  nextTick,
-  onBeforeUnmount,
-  onMounted,
-  ref,
-} from 'vue'
+import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { RouterView } from 'vue-router'
 import Lenis from 'lenis'
 import 'lenis/dist/lenis.css'

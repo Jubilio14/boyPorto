@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import {
-  nextTick,
-  onBeforeUnmount,
-  onMounted,
-  ref,
-} from 'vue'
+import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -15,13 +10,7 @@ import SectionDivider from '../ui/SectionDivider.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const experienceTitleWords = [
-  'Projects',
-  'That',
-  'Define',
-  'My',
-  'Work.',
-]
+const experienceTitleWords = ['Projects', 'That', 'Define', 'My', 'Work.']
 
 const sectionRef = ref<HTMLElement | null>(null)
 const titleRef = ref<HTMLElement | null>(null)
@@ -32,10 +21,7 @@ const trackRef = ref<HTMLElement | null>(null)
 
 let titleAnimationContext: gsap.Context | undefined
 
-
-let gsapMatchMedia:
-  | ReturnType<typeof gsap.matchMedia>
-  | undefined
+let gsapMatchMedia: ReturnType<typeof gsap.matchMedia> | undefined
 
 onMounted(async () => {
   await nextTick()
@@ -46,61 +32,52 @@ onMounted(async () => {
   const viewport = viewportRef.value
   const track = trackRef.value
 
-  if (
-    !section ||
-    !title ||
-    !pinStage ||
-    !viewport ||
-    !track
-  ) {
+  if (!section || !title || !pinStage || !viewport || !track) {
     return
   }
 
   titleAnimationContext = gsap.context(() => {
-  const titleWords =
-    title.querySelectorAll<HTMLElement>(
+    const titleWords = title.querySelectorAll<HTMLElement>(
       '[data-experience-title-word]',
     )
 
-  gsap.set(titleWords, {
-    y: 42,
-    autoAlpha: 0,
-    rotation: 0,
-    transformOrigin: 'center bottom',
-  })
+    gsap.set(titleWords, {
+      y: 42,
+      autoAlpha: 0,
+      rotation: 0,
+      transformOrigin: 'center bottom',
+    })
 
-  ScrollTrigger.create({
-    trigger: title,
-    start: 'top 82%',
-    once: true,
-    invalidateOnRefresh: true,
+    ScrollTrigger.create({
+      trigger: title,
+      start: 'top 82%',
+      once: true,
+      invalidateOnRefresh: true,
 
-    onEnter: () => {
-      gsap.to(titleWords, {
-        y: 0,
-        autoAlpha: 1,
-        rotation: 0,
-        duration: 0.75,
-        stagger: 0.14,
-        ease: 'power3.out',
+      onEnter: () => {
+        gsap.to(titleWords, {
+          y: 0,
+          autoAlpha: 1,
+          rotation: 0,
+          duration: 0.75,
+          stagger: 0.14,
+          ease: 'power3.out',
 
-        onComplete: () => {
-          gsap.set(titleWords, {
-            clearProps: 'transform,opacity,visibility',
-          })
-        },
-      })
-    },
-  })
-}, section)
+          onComplete: () => {
+            gsap.set(titleWords, {
+              clearProps: 'transform,opacity,visibility',
+            })
+          },
+        })
+      },
+    })
+  }, section)
 
   gsapMatchMedia = gsap.matchMedia()
 
   gsapMatchMedia.add('(min-width: 768px)', () => {
     const cards = Array.from(
-      track.querySelectorAll<HTMLElement>(
-        '[data-experience-card]',
-      ),
+      track.querySelectorAll<HTMLElement>('[data-experience-card]'),
     )
 
     if (cards.length === 0) {
@@ -117,9 +94,7 @@ onMounted(async () => {
     const getStartX = () => {
       const viewportCenter = viewport.clientWidth / 2
 
-      const firstCardCenter =
-        firstCard.offsetLeft +
-        firstCard.offsetWidth / 2
+      const firstCardCenter = firstCard.offsetLeft + firstCard.offsetWidth / 2
 
       return viewportCenter - firstCardCenter
     }
@@ -131,9 +106,7 @@ onMounted(async () => {
     const getEndX = () => {
       const viewportCenter = viewport.clientWidth / 2
 
-      const lastCardCenter =
-        lastCard.offsetLeft +
-        lastCard.offsetWidth / 2
+      const lastCardCenter = lastCard.offsetLeft + lastCard.offsetWidth / 2
 
       return viewportCenter - lastCardCenter
     }
@@ -286,14 +259,9 @@ onBeforeUnmount(() => {
       Hanya area ini yang dipin.
       h-screen membuat card memperoleh satu layar penuh.
     -->
-    <div
-      ref="pinStageRef"
-      class="relative h-[100svh] overflow-hidden"
-    >
+    <div ref="pinStageRef" class="relative h-[100svh] overflow-hidden">
       <!-- Batasnya sama dengan konten section lain -->
-      <div
-        class="mx-auto h-full w-full max-w-[1600px] px-5 sm:px-8 lg:px-14"
-      >
+      <div class="mx-auto h-full w-full max-w-[1600px] px-5 sm:px-8 lg:px-14">
         <div
           ref="viewportRef"
           class="experience-scroll relative h-full overflow-x-auto overflow-y-hidden md:overflow-hidden"
@@ -358,7 +326,6 @@ onBeforeUnmount(() => {
   transform: none;
   will-change: transform, opacity;
 }
-
 
 .experience-scroll::-webkit-scrollbar {
   display: none;
@@ -467,7 +434,6 @@ onBeforeUnmount(() => {
     backdrop-filter: blur(2px);
   }
 }
-
 
 @media (prefers-reduced-motion: reduce) {
   .experience-title-word {

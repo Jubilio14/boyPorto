@@ -2,9 +2,9 @@
 import AboutSection from '../components/home/AboutSection.vue'
 import ExperienceSection from '../components/home/ExperienceSection.vue'
 import HeroSection from '../components/home/HeroSection.vue'
-import ProjectsSection from '../components/home/ProjectsSection.vue';
+import ProjectsSection from '../components/home/ProjectsSection.vue'
 import WhatIDoSection from '../components/home/WhatIDoSection.vue'
-import AppFooter from '../components/layout/AppFooter.vue';
+import AppFooter from '../components/layout/AppFooter.vue'
 </script>
 
 <template>

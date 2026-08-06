@@ -1,7 +1,5 @@
 <script setup lang="ts">
-
 import footerImage from '../../assets/Footer.png'
-
 </script>
 
 <template>
@@ -14,11 +12,11 @@ import footerImage from '../../assets/Footer.png'
       class="footer-panel relative w-full bg-accent pb-7 pt-16 sm:pb-9 sm:pt-20 lg:pb-10 lg:pt-24"
     >
       <!-- Nama besar -->
-        <img
-          :src="footerImage"
-          alt="Boy Perton"
-          class="footer-title pointer-events-none absolute left-1/2 top-0 z-0 h-auto w-[100vw] max-w-none -translate-x-1/2 -translate-y-[70%] object-contain sm:-translate-y-[82%] lg:-translate-y-[92%]"
-        />
+      <img
+        :src="footerImage"
+        alt="Boy Perton"
+        class="footer-title pointer-events-none absolute left-1/2 top-0 z-0 h-auto w-[100vw] max-w-none -translate-x-1/2 -translate-y-[70%] object-contain sm:-translate-y-[82%] lg:-translate-y-[92%]"
+      />
 
       <!-- Isi tetap mengikuti container website -->
       <div
@@ -29,9 +27,7 @@ import footerImage from '../../assets/Footer.png'
         >
           <!-- Email -->
           <div>
-            <p class="text-xs font-semibold text-white">
-              Email
-            </p>
+            <p class="text-xs font-semibold text-white">Email</p>
 
             <a
               href="mailto:boyferton07@gmail.com"
@@ -43,9 +39,7 @@ import footerImage from '../../assets/Footer.png'
 
           <!-- Social -->
           <div>
-            <p class="text-xs font-semibold text-white">
-              Social
-            </p>
+            <p class="text-xs font-semibold text-white">Social</p>
 
             <div class="mt-2 flex items-center gap-2">
               <!-- Instagram -->
@@ -82,12 +76,7 @@ import footerImage from '../../assets/Footer.png'
                   />
 
                   <!-- Titik kamera -->
-                  <circle
-                    cx="17.2"
-                    cy="6.8"
-                    r="1.25"
-                    fill="#1d1d1d"
-                  />
+                  <circle cx="17.2" cy="6.8" r="1.25" fill="#1d1d1d" />
                 </svg>
               </a>
 
@@ -115,12 +104,7 @@ import footerImage from '../../assets/Footer.png'
                   />
 
                   <!-- Titik huruf i -->
-                  <circle
-                    cx="7.2"
-                    cy="7.5"
-                    r="1.3"
-                    fill="#1d1d1d"
-                  />
+                  <circle cx="7.2" cy="7.5" r="1.3" fill="#1d1d1d" />
 
                   <!-- Batang huruf i -->
                   <rect
@@ -144,10 +128,7 @@ import footerImage from '../../assets/Footer.png'
         </div>
 
         <!-- Garis bawah -->
-        <div
-          class="mt-6 h-px w-full bg-white/45 sm:mt-8"
-          aria-hidden="true"
-        />
+        <div class="mt-6 h-px w-full bg-white/45 sm:mt-8" aria-hidden="true" />
       </div>
     </div>
   </footer>
@@ -161,6 +142,4 @@ import footerImage from '../../assets/Footer.png'
 .footer-title {
   display: block;
 }
-
-
 </style>

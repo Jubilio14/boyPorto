@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import {
-  onBeforeUnmount,
-  onMounted,
-  ref,
-} from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { gsap } from 'gsap'
 
 const emit = defineEmits<{
@@ -12,15 +8,15 @@ const emit = defineEmits<{
 }>()
 
 const languages = [
-  'Welcome',           // Inggris
-  'Willkommen',        // Jerman
-  'Bienvenue',         // Prancis
-  'G’day',             // Australia — sapaan informal
-  'ようこそ',           // Jepang
-  'Добро пожаловать',  // Rusia
-  '欢迎',               // Mandarin
-  '환영합니다',          // Korea
-  'Selamat Datang',    // Indonesia
+  'Welcome', // Inggris
+  'Willkommen', // Jerman
+  'Bienvenue', // Prancis
+  'G’day', // Australia — sapaan informal
+  'ようこそ', // Jepang
+  'Добро пожаловать', // Rusia
+  '欢迎', // Mandarin
+  '환영합니다', // Korea
+  'Selamat Datang', // Indonesia
 ]
 
 const splashRef = ref<HTMLElement | null>(null)
@@ -60,81 +56,78 @@ onMounted(() => {
   }
 
   const splashTimeline = gsap.timeline()
-timeline = splashTimeline
+  timeline = splashTimeline
 
-languages.forEach((language, index) => {
-  const isLastLanguage =
-    index === languages.length - 1
+  languages.forEach((language, index) => {
+    const isLastLanguage = index === languages.length - 1
 
-  splashTimeline.call(() => {
-    if (!textRef.value) {
-      return
-    }
+    splashTimeline.call(() => {
+      if (!textRef.value) {
+        return
+      }
 
-    textRef.value.textContent = language
-    textRef.value.style.color = isLastLanguage
-      ? '#c1203a'
-      : '#ffffff'
-  })
+      textRef.value.textContent = language
+      textRef.value.style.color = isLastLanguage ? '#c1203a' : '#ffffff'
+    })
 
-  // Teks masuk lebih cepat
-  splashTimeline.fromTo(
-    textRef.value,
-    {
-      y: 22,
-      autoAlpha: 0,
-      filter: 'blur(7px)',
-    },
-    {
-      y: 0,
-      autoAlpha: 1,
-      filter: 'blur(0px)',
-      duration: 0.18,
-      ease: 'power3.out',
-    },
-  )
-
-  if (!isLastLanguage) {
-    // Jeda dan keluar lebih cepat
-    splashTimeline.to(
+    // Teks masuk lebih cepat
+    splashTimeline.fromTo(
       textRef.value,
       {
-        y: -18,
+        y: 22,
         autoAlpha: 0,
-        filter: 'blur(5px)',
-        duration: 0.12,
-        ease: 'power2.in',
+        filter: 'blur(7px)',
       },
-      '+=0.02',
+      {
+        y: 0,
+        autoAlpha: 1,
+        filter: 'blur(0px)',
+        duration: 0.18,
+        ease: 'power3.out',
+      },
     )
-  }
-})
 
-splashTimeline
-  .to(
-    textRef.value,
-    {
-      scale: 1.02,
-      duration: 0.18,
-      ease: 'power2.out',
-    },
-    '+=0.08',
-  )
-  .call(() => {
-    emit('reveal')
+    if (!isLastLanguage) {
+      // Jeda dan keluar lebih cepat
+      splashTimeline.to(
+        textRef.value,
+        {
+          y: -18,
+          autoAlpha: 0,
+          filter: 'blur(5px)',
+          duration: 0.12,
+          ease: 'power2.in',
+        },
+        '+=0.02',
+      )
+    }
   })
-  .to(
-    splashRef.value,
-    {
-      autoAlpha: 0,
-      duration: 0.4,
-      ease: 'power2.inOut',
-    },
-    '+=0.05',
-  )
-  .call(() => {
-    emit('complete')
-  })
+
+  splashTimeline
+    .to(
+      textRef.value,
+      {
+        scale: 1.02,
+        duration: 0.18,
+        ease: 'power2.out',
+      },
+      '+=0.08',
+    )
+    .call(() => {
+      emit('reveal')
+    })
+    .to(
+      splashRef.value,
+      {
+        autoAlpha: 0,
+        duration: 0.4,
+        ease: 'power2.inOut',
+      },
+      '+=0.05',
+    )
+    .call(() => {
+      emit('complete')
+    })
 })
 
 onBeforeUnmount(() => {
