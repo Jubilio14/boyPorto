@@ -3,7 +3,6 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-import SectionDivider from '../ui/SectionDivider.vue'
 import profileImage from '../../assets/images/profile-boy.png'
 
 gsap.registerPlugin(ScrollTrigger)

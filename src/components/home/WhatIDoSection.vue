@@ -5,8 +5,6 @@ import type { ComponentPublicInstance } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-import SectionDivider from '../ui/SectionDivider.vue'
-
 type TemplateRefValue = Element | ComponentPublicInstance | null
 
 gsap.registerPlugin(ScrollTrigger)

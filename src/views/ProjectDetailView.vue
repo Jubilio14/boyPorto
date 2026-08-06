@@ -102,6 +102,7 @@ const project = computed(() => {
         CONTEXT
       =================================================== -->
       <section
+        v-if="project.context"
         class="border-t border-white/[0.04] bg-main py-20 sm:py-24 lg:py-28"
       >
         <div class="mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:px-24">
@@ -164,7 +165,10 @@ const project = computed(() => {
       <!-- ==================================================
         IN USERS' OWN WORDS
       =================================================== -->
-      <section class="overflow-hidden bg-main py-20 sm:py-24 lg:py-28">
+      <section
+        v-if="project.userVoices"
+        class="overflow-hidden bg-main py-20 sm:py-24 lg:py-28"
+      >
         <div class="mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:px-24">
           <!-- Heading -->
           <div class="mx-auto max-w-[900px] text-center">
@@ -222,7 +226,10 @@ const project = computed(() => {
       <!-- ==================================================
         VISUAL REDESIGN
       =================================================== -->
-      <section class="bg-main py-20 sm:py-24 lg:py-28">
+      <section
+        v-if="project.visualRedesign"
+        class="bg-main py-20 sm:py-24 lg:py-28"
+      >
         <div
           class="mx-auto grid w-full max-w-[1600px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(420px,1.05fr)] lg:gap-20 lg:px-24"
         >
@@ -264,7 +271,10 @@ const project = computed(() => {
       <!-- ==================================================
         FINANCIAL MANAGEMENT
       =================================================== -->
-      <section class="bg-main py-20 sm:py-24 lg:py-28">
+      <section
+        v-if="project.financialManagement"
+        class="bg-main py-20 sm:py-24 lg:py-28"
+      >
         <div class="mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:px-24">
           <!-- Header -->
           <div class="mx-auto max-w-[920px] text-center">
@@ -325,7 +335,7 @@ const project = computed(() => {
       <!-- ==================================================
         SPLIT BILL
       =================================================== -->
-      <section class="bg-main py-20 sm:py-24 lg:py-28">
+      <section v-if="project.splitBill" class="bg-main py-20 sm:py-24 lg:py-28">
         <div class="mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:px-24">
           <!-- Header -->
           <div class="mx-auto max-w-[920px] text-center">
@@ -389,7 +399,10 @@ const project = computed(() => {
       <!-- ==================================================
         USABILITY TESTING
       =================================================== -->
-      <section class="bg-main pb-0 pt-20 sm:pt-24 lg:pt-28">
+      <section
+        v-if="project.usabilityTesting"
+        class="bg-main pb-0 pt-20 sm:pt-24 lg:pt-28"
+      >
         <div
           class="mx-auto grid w-full max-w-[1600px] gap-14 px-5 sm:px-8 lg:grid-cols-[minmax(0,1.45fr)_minmax(320px,0.75fr)] lg:items-center lg:gap-20 lg:px-24"
         >

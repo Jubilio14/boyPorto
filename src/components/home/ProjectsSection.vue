@@ -6,7 +6,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { projects } from '../../data/projects'
 
 import ProjectCard from './ProjectCard.vue'
-import SectionDivider from '../ui/SectionDivider.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
