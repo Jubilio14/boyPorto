@@ -12,12 +12,12 @@ export interface ProjectDetail {
   heroMediaType?: 'gif' | 'image' | 'placeholder'
   heroMedia?: string
 
-  context: ProjectContext
-  userVoices: UserVoices
-  visualRedesign: ProjectVisualRedesign
-  financialManagement: FinancialManagementSection
-  splitBill: SplitBillSection
-  usabilityTesting: UsabilityTestingSection
+  context?: ProjectContext
+  userVoices?: UserVoices
+  visualRedesign?: ProjectVisualRedesign
+  financialManagement?: FinancialManagementSection
+  splitBill?: SplitBillSection
+  usabilityTesting?: UsabilityTestingSection
 }
 
 export const projectDetails: ProjectDetail[] = [
